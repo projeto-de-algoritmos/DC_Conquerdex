@@ -1,11 +1,17 @@
 import api from './api';
+import axios from 'axios';
 class PokemonService {
     constructor(){}
     
-    async getPokemons(){
-        let response = await api.get('pokemon');
-        console.log(response);
-        return response;
+    async getPokemons(offset, limit){
+        let params = `offset=${offset}&limit=${limit}`
+        let pokemons = [];
+        let response = await api.get(`pokemon?${params}`);
+        for(var pokemon of response.data.results){
+            let poke_info = await axios.get(pokemon.url);
+            pokemons.push(poke_info.data);
+        }
+        return pokemons;
     }
 }
 
