@@ -3,7 +3,7 @@ import axios from 'axios';
 class PokemonService {
     constructor(){}
     
-    async getPokemons(offset, limit){
+    async getPokemons(offset, limit, setPokemons){
         let params = `offset=${offset}&limit=${limit}`
         let pokemons = [];
         let response = await api.get(`pokemon?${params}`);
@@ -11,7 +11,7 @@ class PokemonService {
             let poke_info = await axios.get(pokemon.url);
             pokemons.push(poke_info.data);
         }
-        return pokemons;
+        setPokemons(pokemons);
     }
 }
 
