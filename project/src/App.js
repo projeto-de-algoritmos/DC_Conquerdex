@@ -1,5 +1,5 @@
-import pokemonService from "../../services/pokemon";
-import util from "../../utils/util";
+import pokemonService from "./services/pokemon";
+import util from "./utils/util";
 import {
   Center,
   Flex,
