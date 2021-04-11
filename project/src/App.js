@@ -133,6 +133,7 @@ function App() {
                 alignSelf="flex-start"
                 justifySelf="flex-start"
                 position="absolute"
+                p="5px"
               >
                 <Pokeball fill={util.getColor(pokemon?.types[0].type.name)} />
               </Box>
