@@ -13,11 +13,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  
+
   useEffect(() => {
     pokemonService.getPokemons(setPokemons);
   }, []);
@@ -49,21 +51,6 @@ function App() {
     <>
       <VStack mb="100px">
         <HStack w="100%" bg="tomato" h="8vh">
-          <Menu>
-            {({ isOpen }) => (
-              <>
-                <MenuButton isActive={isOpen} as={Button}>
-                  {isOpen ? "Close" : "Open"}
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>Download</MenuItem>
-                  <MenuItem onClick={() => alert("Kagebunshin")}>
-                    Create a Copy
-                  </MenuItem>
-                </MenuList>
-              </>
-            )}
-          </Menu>
           <Center w="100vw" align="center" color="white">
             <Text fontFamily="Bangers" fontSize="7xl">
               CONQUERDEX
@@ -72,6 +59,18 @@ function App() {
         </HStack>
       </VStack>
       <VStack>
+        <Text fontFamily="Bangers" fontSize="3xl">Como deseja ordenar sua Conquerdex?</Text>
+        <RadioGroup d="flex" >
+          <Radio value="1">
+            <Text fontFamily="Bangers" mr="20px" fontSize="xl">Nome</Text>
+          </Radio>
+          <Radio value="2">
+            <Text fontFamily="Bangers" mr="20px" fontSize="xl">Tipo</Text>
+          </Radio>
+          <Radio value="3">
+            <Text fontFamily="Bangers" fontSize="xl">Id</Text>
+          </Radio>
+        </RadioGroup>
         <SimpleGrid columns={6} justifyContent="space-around">
           {pokemons.map((pokemon, index) => (
             <Box p="10px" key={index}>
