@@ -34,8 +34,8 @@ class DivideAndConquer {
       this.compare(
         this.pokemons[r],
         this.pokemons[Math.floor((l + r) / 2)],
-        orderType === 1
-      )
+        orderType
+      ) === 1
     ) {
       [this.pokemons[r], this.pokemons[Math.floor((l + r) / 2)]] = [
         this.pokemons[Math.floor((l + r) / 2)],
@@ -46,8 +46,8 @@ class DivideAndConquer {
       this.compare(
         this.pokemons[Math.floor((l + r) / 2)],
         this.pokemons[l],
-        orderType === 1
-      )
+        orderType
+      ) === 1
     ) {
       [this.pokemons[l], this.pokemons[Math.floor((l + r) / 2)]] = [
         this.pokemons[Math.floor((l + r) / 2)],
@@ -58,8 +58,8 @@ class DivideAndConquer {
       this.compare(
         this.pokemons[Math.floor((l + r) / 2)],
         this.pokemons[r],
-        orderType === 1
-      )
+        orderType
+      ) === 1
     ) {
       [this.pokemons[r], this.pokemons[Math.floor((l + r) / 2)]] = [
         this.pokemons[Math.floor((l + r) / 2)],
