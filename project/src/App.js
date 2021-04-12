@@ -18,16 +18,18 @@ import ReactAudioPlayer from "react-audio-player";
 import pokemonMusic from "./assets/pokemon_tema.mp3";
 import volumeUp from "./assets/volume_up_white.svg";
 import volumeOff from "./assets/volume_off_white.svg";
+import CustomSpinner from "./utils/CustomSpinner";
 
 const dc = new DivideAndConquer();
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [value, setValue] = useState("3");
+  const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(true);
   const [muted, setMuted] = useState(false);
 
   useEffect(() => {
-    pokemonService.getPokemons(setPokemons, dc);
+    pokemonService.getPokemons(setPokemons, dc, setLoading);
   }, []);
 
   const orderPokemons = (index) => {
@@ -78,6 +80,7 @@ function App() {
 
   return (
     <>
+      <CustomSpinner loading={loading} />
       <VStack mb="100px">
         <HStack w="100%" bg="tomato" h="8vh" px="100px">
           <Button
@@ -86,6 +89,7 @@ function App() {
             h="50px"
             borderRadius="25px"
             shadow="dark-lg"
+            disabled={loading}
           >
             <ReactAudioPlayer
               src={pokemonMusic}

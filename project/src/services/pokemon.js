@@ -1,7 +1,7 @@
 import api from './api';
 import axios from 'axios';
 class PokemonService {    
-    async getPokemons(setPokemons, pokemonsToSort){
+    async getPokemons(setPokemons, pokemonsToSort, setLoading){
         const pokemons = [];
         const response = await api.get(`generation/1`);
         for(var pokemon of response.data.pokemon_species){
@@ -11,6 +11,7 @@ class PokemonService {
             pokemons.push(poke_info.data);
         }
         setPokemons(pokemons);
+        setLoading(false)
         pokemonsToSort.setPokemonArray(pokemons);
     }
 }
