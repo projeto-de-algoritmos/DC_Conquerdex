@@ -14,11 +14,11 @@ import {
 import { useEffect, useState } from "react";
 import DivideAndConquer from "./DivideAndConquer";
 import { ReactComponent as Pokeball } from "./assets/pokeball.svg";
-import ReactAudioPlayer from "react-audio-player";
 import pokemonMusic from "./assets/pokemon_tema.mp3";
 import volumeUp from "./assets/volume_up_white.svg";
 import volumeOff from "./assets/volume_off_white.svg";
 import CustomSpinner from "./utils/CustomSpinner";
+import useSound from "use-sound";
 
 const dc = new DivideAndConquer();
 
@@ -26,11 +26,20 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(true);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [play, { stop }] = useSound(pokemonMusic, { volume: 0.25 });
 
   useEffect(() => {
     pokemonService.getPokemons(setPokemons, dc, setLoading);
   }, []);
+
+  const audioConfig = (button) => {
+    if (muted) play();
+    else {
+      stop();
+    }
+    if (button) setMuted(!muted);
+  };
 
   const orderPokemons = (index) => {
     setValue(index);
@@ -84,20 +93,13 @@ function App() {
       <VStack mb="100px">
         <HStack w="100%" bg="tomato" h="8vh" px="100px">
           <Button
-            onClick={() => setMuted(!muted)}
+            onClick={() => audioConfig(true)}
             bg={muted ? "red" : "green.400"}
             h="50px"
             borderRadius="25px"
             shadow="dark-lg"
             disabled={loading}
           >
-            <ReactAudioPlayer
-              src={pokemonMusic}
-              autoPlay={true}
-              volume={0.01}
-              loop={true}
-              muted={muted}
-            />
             {muted ? <img src={volumeOff} /> : <img src={volumeUp} />}
           </Button>
           <Center w="100vw" align="center" color="white">

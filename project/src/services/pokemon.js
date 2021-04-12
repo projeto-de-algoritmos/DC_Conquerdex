@@ -7,7 +7,6 @@ class PokemonService {
         for(var pokemon of response.data.pokemon_species){
             let poke_gen = await axios.get(pokemon.url);
             let poke_info = await axios.get(poke_gen.data.varieties[0].pokemon.url);
-            console.log(poke_info.data);
             pokemons.push(poke_info.data);
         }
         setPokemons(pokemons);
