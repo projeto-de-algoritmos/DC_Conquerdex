@@ -20,6 +20,9 @@ O objetivo do projeto é a aplicação dos conteúdos da disciplina Projeto de A
 <img src="./screenshoots/screen2.png">
 <img src="./screenshoots/screen3.png">
 
+## ATENÇÃO
+- As vezes a API demora muito para trazer os Pokemons, caso isso ocorra pare o projeto e inicie novamente.
+
 ## Instalação 
 **Linguagem**: Javascript<br>
 **Framework**: ReactJS<br>
